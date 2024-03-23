@@ -72,13 +72,13 @@ export function WebsocketDemo2() {
         preStatus.current = status
     }, [status])
 
-    // const pending = (status == "not-connected" || status == "connecting" || status == "reconnecting" || currentLog?.startsWith("running") || (!currentLog && status == "connected"))
+     const pending = (status == "not-connected" || status == "connecting" || status == "reconnecting" || currentLog?.startsWith("running") || (!currentLog && status == "connected"))
 
     return (
         <div className='flex flex-col gap-2'>
             <DemoClosedNotice />
 
-            {/* <div className='p-2 bg-primary-foreground rounded-md'>We are on high server load, this is now running on A100 40GB, with max 10 concurrent inputs, the server queue remaining {remainingQueue}, the websocket will auto disconnect on 2 seconds non-interative, draw or type to trigger it.</div> */}
+            <div className='p-2 bg-primary-foreground rounded-md'>We are on high server load, this is now running on A100 40GB, with max 10 concurrent inputs, the server queue remaining {remainingQueue}, the websocket will auto disconnect on 2 seconds non-interative, draw or type to trigger it.</div>
             <div className='flex md:flex-row gap-2 px-2 flex-col-reverse'>
                 <div className='w-1/2 aspect-square'>
                     <Tldraw
@@ -166,14 +166,14 @@ function EditorEvent(props: {
         if (a)
             await props.onChange(a);
 
-        // exportToBlob({
-        //     format: 'png',
-        //     editor: editor,
-        //     ids: Array.from(editor.getPageShapeIds(editor.getCurrentPage())),
-        // }).then(async (blob) => {
-        //     console.log(blob);
-        //     await props.onChange(blob);
-        // })
+         exportToBlob({
+             format: 'png',
+             editor: editor,
+             ids: Array.from(editor.getPageShapeIds(editor.getCurrentPage())),
+         }).then(async (blob) => {
+             console.log(blob);
+             await props.onChange(blob);
+         })
     }, props.timeout);
 
     useEffect(() => {
